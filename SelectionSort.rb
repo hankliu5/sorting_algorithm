@@ -1,31 +1,27 @@
-# code from CSE12 PA5
 def selection_sort arr
   puts "Original array: #{arr.to_s}"
   puts "Processing..."
-  movements = 0
+  swaps = 0
   comparisons = 0
-  i = arr.length - 1
 
-  i.times do
-    maxpos = 0
-    for k in 1..i do
+  for i in 0...(arr.length - 1)
+    minpos = i
+    for k in (i+1)...arr.length do
       comparisons += 1
-      if (arr[k] > arr[maxpos])
-        maxpos = k
+      if (arr[k] < arr[minpos])
+        minpos = k
       end
     end
-    if (i != maxpos)
-      movements += 3
-      temp = arr[i]
-      arr[i] = arr[maxpos]
-      arr[maxpos] = temp
-      puts arr.to_s
+    if (i != minpos)
+      swaps += 1
+      arr[i], arr[minpos] = arr[minpos], arr[i]
     end
-    i -= 1
+    puts "#{arr.to_s} -> done with #{i+1} loop(s)"
   end
-  return arr, comparisons, movements
+  return arr, comparisons, swaps
 end
 
-array = [5, 4, 3, 2, 1]
+array = [27,18,9,25,50,40,35]
 result = selection_sort(array)
-puts "result array is #{result[0].to_s}, comparisons: #{result[1]}, movements: #{result[2]}"
+puts
+puts "result array is #{result[0].to_s}, comparisons: #{result[1]}, swaps: #{result[2]}"
