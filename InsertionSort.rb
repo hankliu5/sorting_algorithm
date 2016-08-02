@@ -1,26 +1,25 @@
 def insertion_sort arr
   puts "Original array: #{arr.to_s}"
   puts "Processing..."
-  movements = 0
+  insertions = 0
   comparisons = 0
   for i in 1...arr.length
-    movements += 1
     temp = arr[i]
     j = i
     while (j > 0 && arr[j - 1] > temp)
       comparisons += 1
-      movements += 1
-      arr[j] = arr[j - 1]
+      arr[j] = arr[j - 1] # move one position to the right.
       j -= 1
+      puts arr.to_s
     end
     comparisons += 1 if j > 0
-    movements += 1
+    insertions += 1
     arr[j] = temp
-    puts arr.to_s
+    puts "#{arr.to_s} -> done with #{i} loop(s)"
   end
-  return arr, comparisons, movements
+  return arr, comparisons, insertions
 end
 
-array = [5, 4, 3, 2, 1]
+array = [5, 2, 4, 6, 1, 3]
 result = insertion_sort(array)
-puts "result array is #{result[0].to_s}, comparisons: #{result[1]}, movements: #{result[2]}"
+puts "result array is #{result[0].to_s}, comparisons: #{result[1]}, insertions: #{result[2]}"
