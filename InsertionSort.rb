@@ -6,13 +6,13 @@ def insertion_sort arr
   for i in 1...arr.length
     temp = arr[i]
     j = i
-    while (j > 0 && arr[j - 1] > temp)
+    while (j > 0)
       comparisons += 1
+      break if arr[j - 1] <= temp
       arr[j] = arr[j - 1] # move one position to the right.
       j -= 1
       puts arr.to_s
     end
-    comparisons += 1 if j > 0
     insertions += 1
     arr[j] = temp
     puts "#{arr.to_s} -> done with #{i} loop(s)"
@@ -20,6 +20,6 @@ def insertion_sort arr
   return arr, comparisons, insertions
 end
 
-array = [5, 2, 4, 6, 1, 3]
+array = [1,2,3,4,5]
 result = insertion_sort(array)
 puts "result array is #{result[0].to_s}, comparisons: #{result[1]}, insertions: #{result[2]}"
