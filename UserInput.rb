@@ -5,20 +5,30 @@ class UserInput
   input_ary = Array.new
 
   puts "Welcome to demostration of sorting methods"
-  puts "enter the integer array you want to sort: (use \"e\" to end)"
+  puts "Enter the integer array you want to sort: (use \"e\" to end, \"s\" to show"
+  puts "and \"d\" to delete the last input)"
   loop do
     input = gets.chomp
-    break if input == "e"
-    begin
-      number = Integer(input)
-    rescue
-      puts "please enter an integer"
+    case input
+    when "s"
+      puts "Current array: #{input_ary.to_s}"
+    when "d"
+      input_ary.delete(input_ary.last)
+      puts "Current array: #{input_ary.to_s}"
+    when "e"
+      break
     else
-      if number.to_s != input
+      begin
+        number = Integer(input)
+      rescue
         puts "please enter an integer"
-        next
+      else
+        if number.to_s != input
+          puts "please enter an integer"
+          next
+        end
+        input_ary << number
       end
-      input_ary << number
     end
   end
 
